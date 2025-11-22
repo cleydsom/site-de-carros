@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "League Ghotic", sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 600px;
+    gap: 50px;
+    gap: 10%;
+    z-index: 2;
+
+    & img {
+        width: 250px;
+    }
+
+    & nav {
+        & ul {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+        }
+    }
+}
+
+section {
+    background-image: radial-gradient(#121212, #FFC300);
+    height: 100vh;
+    position: relative;
+
+    & .list {
+        width: 70vw;
+        height: 100%;
+        margin: auto;
+        position: relative;
+
+        & .item {
+            position: absolute;
+            inset: 0;
+
+            & .car-img {
+               width: 55%;
+
+                & img {
+                    width: 100%;
+                    transform: rotate(-30deg);
+                }
+            }
+
+            & .content {
+                position: absolute;
+                right: 100px;
+                width: 70%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: end;
+                gap: 20px;
+
+                & .car-information {
+                    font-weight: bold;
+                }
+
+                & h2 {
+                    font-size: clamp(2em, 5vw, 4em);
+                    line-height: 1em;
+                    text-align: right;
+                    margin: 0;
+                    font-family: "Poppins", sans-serif;
+                }
+
+                & .description {
+                    color: #c4c4c4;
+                    font-size: 12px;
+                    text-align: right;
+                    max-width: 400px;
+                }
+
+                & .information {
+                    border-radius: 30px;
+                    height: 35px;
+                    width: 120px;
+                    text-transform: uppercase;
+                    border: 2px solid #c224a8;
+                    background-color: #beff1b;
+                    color: #000;
+                    cursor: pointer;
+                    font-weight: bold;
+
+                }
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            height: 250px;
+            width: 90vw;
+            /* mesmo tamanho das setas */
+            left: 50%;
+            transform: translateX(-50%);
+            top: 50%;
+            border-top: 1px solid #fff;
+        }
+    }
+
+
+    .arrows {
+
+        width: 90vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+
+
+        & button:nth-child(1) {
+            & img {
+                transform: scale(-1);
+            }
+        }
+
+    }
+
+    .arrows button {
+        background: #000;
+        border: none;
+        cursor: pointer;
+        pointer-events: all;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arrows button img {
+        width: 40px;
+        height: auto;
+        filter: brightness(0) invert(1);
+        /* deixa branco se quiser contraste */
+        transition: transform 0.3s;
+    }
+
+
+    & button {
+        top: 60%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+
+        & img {
+            width: 30px;
+            margin-top: 4px;
+            cursor: pointer;
+        }
+
+        &:hover {
+            background-color: #beff1b;
+        }
+    }
+
+
+    .indicators {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 200px;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        gap: 15px;
+
+        & .number {
+            font-size: 5em;
+            font-family: "League Ghotic", sans-serif;
+        }
+
+        & ul {
+            display: flex;
+            gap: 10px;
+
+            & li {
+                width: 50px;
+                height: 5px;
+                background-color: #beff1b;
+                border-radius: 5px;
+                transition: 0.5s;
+            }
+        }
+    }
+
+}
+
+section {
+
+    &.list {
+
+        & .item {
+            transform: translateX(100vw);
+            transition: 0.5s;
+            opacity: 0;
+
+            & .car-img {
+                & img {
+                    transform: rotate(0);
+                    transition: 0.5s;
+                    transition-delay: 0.3s;
+                }
+            }
+
+            .content {
+
+                & .car-information,
+                h2,
+                .description,
+                .information {
+                    transform: translateX(200px);
+                    transition: 0.7s;
+                    transition-delay: 0.3s;
+                    opacity: 0;
+                }
+
+                & h2 {
+                    transition-delay: 0.5s;
+                }
+
+                & .description {
+                    transition-delay: 0.7s;
+                }
+
+                & .information {
+                    transition-delay: 0.9s;
+                }
+            }
+        }
+
+        & .active {
+            transform: translateX(0);
+            transition: 0.5s;
+            opacity: 1;
+
+            & .car-img {
+                & img {
+                    transform: rotate(-20deg);
+                }
+            }
+
+            .content {
+
+                & .car-information,
+                h2,
+                .description,
+                .information {
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+}
+
+
+/* --- CONFIGURAÇÃO DO SLIDER --- */
+
+/* todos os itens ficam empilhados, mas invisíveis */
+section .list {
+    position: relative;
+}
+
+section .list .item {
+    position: absolute;
+    inset: 0;
+    transform: translateX(100vw); /* começa fora da tela */
+    opacity: 0;
+    transition: 0.6s ease;
+}
+
+/* item visível */
+section .list .item.active {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 2;
+}
+
+/* animações do conteúdo */
+section .list .item .content .car-information,
+section .list .item .content h2,
+section .list .item .content .description,
+section .list .item .content .information {
+    transform: translateX(200px);
+    opacity: 0;
+    transition: 0.6s ease;
+}
+
+/* conteúdo do item ativo entra animado */
+section .list .item.active .content .car-information,
+section .list .item.active .content h2,
+section .list .item.active .content .description,
+section .list .item.active .content .information {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* animação entrando de forma estilosa */
+@keyframes carEnter {
+    0% {
+        opacity: 0;
+        transform: translateX(180px) scale(0.8) rotate(-2deg);
+        filter: blur(6px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(0px) scale(1.03) rotate(0deg);
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px) scale(1);
+    }
+}
+
+& .car-img {
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    transform: translateY(-50%);
+    width: 55%;
+
+    & img {
+        width: 100%;
+        transform: rotate(-30deg);
+    }
+}
